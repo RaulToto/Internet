@@ -25,21 +25,30 @@ int BaseConverter::convertNtoDecimal(std::string number, int base)
         }
         result+=intNumber*(pow(base,i));//almacena el resultado este por el metodo de polinomio numero*(base)^i
     }
-    std::cout <<  "The result is: "<<result <<std::endl;//imprime el resultado
+    std::cout <<  "The result in base10 is : "<<result <<std::endl;//imprime el resultado
 }
 int BaseConverter::convertDecimalToN(int number, int base)
 {
+    std::string result{};
     for (int i = 0; number!=0; ++i) {
        int convert=number%base;//calcula el reciduo 
        number /= base;//divide el nuemro por la base y actualiza este 
        if(convert>=10 && convert<=15){//en el caso de que el residuo sea >=10 <=15 le suma 55 al caracter
            convert+=55;
-           char str=convert;
-           std::cout << "The result is:" << str ;
+
+           result.push_back(convert);
+
        }
        else
-           std::cout <<convert ;
+       {
+            char ss=convert;
+            ss+=48;
+            result.push_back(ss);
+       }
+
     }
+    std::reverse(result.begin(),result.end());
+    std::cout << "the result in base  " << base << "is :" << result << std::endl;
 
 }
 
@@ -63,4 +72,6 @@ std::__cxx11::string BaseConverter::intToString(int number)//convierte un entero
     return str;
 
 }
+
+
 
